@@ -9,16 +9,16 @@ Installation reference for Mac at [here](https://medium.com/@itsromiljain/the-be
 
 1. clone repository
 2. cd api directory 
-3. setup virtualenv (virtual environment)
-4. activate virtualenv
-5. pip install requirements
+3. setup pipenv (requires pipenv to be installed)
+4. activate the pipenv
+5. pipenv install the requirements
 
 ```
 git clone https://github.com/XiaoleZ/defhack-2020.git
 cd defhack-2020/api
-virtualenv venv --python=python3
-source venv/bin/activate
-pip install -r requirements.txt
+pipenv shell
+pipenv install
+export FLASK_APP=api.py (different for windows)
 ```
 
 ### How to run
