@@ -1,4 +1,42 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[React reference.](https://github.com/XiaoleZ/defhack-2020/wiki/React-reference)
+[Material-UI.](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
+## Mental Health Project
+
+### Setup Guide
+Requirements: Node.js, npm, yarn
+Installation reference for Mac at [here](https://medium.com/@itsromiljain/the-best-way-to-install-node-js-npm-and-yarn-on-mac-osx-4d8a8544987a)
+
+1. clone repository
+2. cd api directory 
+3. setup virtualenv (virtual environment)
+4. activate virtualenv
+5. pip install requirements
+
+```
+git clone https://github.com/XiaoleZ/defhack-2020.git
+cd defhack-2020/api
+virtualenv venv --python=python3
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### How to run
+1. run React server
+```
+yarn start
+```
+2. Open another terminal and run to run flask server
+```
+yarn start-api
+```
+To see the application, access this url in your browser:
+```
+http://localhost:3000  *Frontend: React
+http://localhost:5000  *Backend: Flask
+```
+
+* If you have `/bin/sh: react-scripts: command not found` try run `npm install`
 
 ## Available Scripts
 
