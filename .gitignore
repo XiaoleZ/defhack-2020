@@ -36,6 +36,7 @@ venv.bak/
 pycache/
 *.py[cod]
 *$py.class
+__pycache__
 
 # Visual Studio files
 .vscode/
