@@ -65,8 +65,6 @@ function submit(username, email, password, confirmedPassword, setErrMessage) {
       }
     })
     .catch(function (error){
-      console.log(error)
-      setErrMessage(error.response.data.message);
     });
 }
 

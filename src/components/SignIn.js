@@ -67,8 +67,6 @@ function submit(username, password, setErrMessage) {
       }
     })
     .catch(function (error){
-      console.log(error)
-      setErrMessage(error.response.data.message);
     });
 }
 
