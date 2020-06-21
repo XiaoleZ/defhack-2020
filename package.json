@@ -15,9 +15,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-api-env": "cd api && pipenv shell && export FLASK_APP=api.py",
+    "start-api-env": "cd backend && pipenv shell && export FLASK_APP=api.py",
     "stop-api-env": "exit",
-    "start-api": "cd api && flask run",
+    "start-api": "cd backend/api && flask run",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test-api": "cd api && flask test",
