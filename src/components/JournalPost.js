@@ -8,15 +8,15 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Popup from './JournalDeletePopup';
+// import Modal from 'react-bootstrap/Modal'
 import './Journal.css';
-import { ThemeProvider } from '@material-ui/styles';
-import theme from './Theme';
+
 import JournalHeader from "./JournalHeader";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#ebfafc',
     width: '80%',
+    backgroundColor: 'white',
     margin: '10px auto',
     textAlign: 'left',
   },
@@ -28,8 +28,7 @@ export default function Journal(props) {
 
   return (
     <Grid id={props.data.id} >
-    <ThemeProvider theme={theme}>
-      <Card className={classes.root}>
+      <Card className={classes.root} >
         <CardContent>
           <JournalHeader
             className={classes.title}
@@ -43,7 +42,7 @@ export default function Journal(props) {
         </CardContent>
         <CardActions>
           <Button  color="primary" size="small" /*onClick={}*/ variant="contained">Edit</Button>
-          <Button color="secondary" variant="outlined" size="small" onClick={() => setModalShow(true)}>
+          <Button variant="primary" size="small" onClick={() => setModalShow(true)}>
             Delete
           </Button>
           <Popup
@@ -53,7 +52,6 @@ export default function Journal(props) {
           />
         </CardActions>
       </Card>
-    </ThemeProvider>
     </Grid>
   );
 }

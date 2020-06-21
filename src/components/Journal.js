@@ -109,6 +109,7 @@ export default function Journal() {
         <Typography component="h1" variant="h5" m={20}>
           My Journals
         </Typography>
+        
         <div className="post-container">
             {post && post.map(post => <JournalPost key={post.id} data={post} />).reverse()}
         </div>
