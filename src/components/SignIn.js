@@ -14,7 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import {LOCAL_STORAGE_USER} from "../constants";
+import {setUser} from "../constants";
 
 function Copyright() {
   return (
@@ -57,7 +57,7 @@ function submit(username, password) {
     })
     .then(function (response) {
       console.log(response);
-      localStorage.setItem(LOCAL_STORAGE_USER, JSON.stringify(response.data));
+      setUser(response.data)
     });
 }
 
@@ -115,7 +115,8 @@ export default function SignIn() {
             className={classes.submit}
             onClick={(e) => {
               submit(username, password);
-              e.preventDefault();}
+              e.preventDefault();
+            }
             }
           >
             Sign In
