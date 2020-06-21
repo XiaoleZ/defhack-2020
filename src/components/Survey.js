@@ -17,7 +17,8 @@ class Survey extends Component {
     this.setState(() => {
       return {
         questions: surveyData.questions[this.state.currentQuestion].question,
-        options: surveyData.questions[this.state.currentQuestion].options
+        options: surveyData.questions[this.state.currentQuestion].options,
+        answer: surveyData.questions[this.state.currentQuestion].answer,
       };
     });
   };
@@ -56,7 +57,7 @@ class Survey extends Component {
   //check answer
   checkAnswer = answer => {
     this.setState({ myAnswer: answer, disabled: false });
-    console.log(this.score);
+    console.log(this.state.score);
   };
   finishHandler = () => {
     if (this.state.currentQuestion === surveyData.questions.length - 1) {
@@ -89,10 +90,13 @@ class Survey extends Component {
           <span>{`Questions ${currentQuestion + 1}  out of ${surveyData.questions.length } remaining `}</span>
           
           {options.map(option => (
-          <p key={option.id} className={`ui floating message options ${myAnswer === option ? "selected" : null}`}
+          
+          <div>
+            <button key={option.id} className={`ui floating message options ${myAnswer === option ? "selected" : null}`}
             onClick={() => this.checkAnswer(option)}>
             {option}
-          </p>
+            </button>
+          </div>
           ))}
 
           {/* //the next button */}
