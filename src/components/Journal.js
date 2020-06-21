@@ -4,16 +4,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './Theme';
 import Card from '@material-ui/core/Card';
-// import logo from './logo.svg';
 import "./custom.css";
 import JournalPost from "./JournalPost";
-import axios from "axios"
 
 const useStyles = makeStyles({
   root: {
     width: '80%',
-    backgroundColor: 'white',
+    backgroundColor: '#ebfafc',
+    color: '#00494A',
     margin: '10px auto',
     textAlign: 'center',
   },
@@ -39,7 +40,8 @@ export default function Journal() {
   return (
 
     <div className="Journal">
-      <Typography component="h1" variant="h5">
+    <ThemeProvider theme={theme}>
+      <Typography component="h1" variant="h5" color="primary.dark">
             Let's write a journal!
       </Typography>
       <Card className={classes.root}>
@@ -51,6 +53,7 @@ export default function Journal() {
             type="journal"
             id="journal"
             style = {{width: 600}}
+            labelColor="primary.light"
           />
         <br />
         <TextField
@@ -78,8 +81,8 @@ export default function Journal() {
         <div className="post-container">
             {post && post.map(post => <JournalPost key={post.id} data={post} />)}
         </div>
-
       </div>
+    </ThemeProvider>
     </div>
   );
 }

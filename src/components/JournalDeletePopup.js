@@ -1,9 +1,12 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './Theme';
 
 export default function Popup(props)  {
   return (
+    <div>
     <Modal
       {...props}
       size="lg"
@@ -11,19 +14,22 @@ export default function Popup(props)  {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id="contained-modal-title-vcenter" color="primary.dark">
           Warning
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>
+        <p color="primary.dark">
           Are you sure you want to delete this journal post?
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button color="primary" variant onClick={props.onHide}>Cancel</Button>
-        <Button variant="secondary" onClick={props.onHide}>Delete</Button>
+      <ThemeProvider theme={theme}>
+        <Button color="secondary" size="small" onClick={props.onHide}>Delete</Button>
+        <Button color="primary" variant="contained" size="small" onClick={props.onHide}>Cancel</Button>
+      </ThemeProvider>
       </Modal.Footer>
     </Modal>
+    </div>
   );
 }
