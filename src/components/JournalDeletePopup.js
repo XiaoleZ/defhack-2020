@@ -1,8 +1,20 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
+import Modal from 'react-bootstrap/Modal'
 import Modal from 'react-bootstrap/Modal';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './Theme';
+import axios from "axios"
+
+function deleteJournal(id) {
+  axios.delete('/entry', {
+    data: {entryId: id,}
+  })
+  .then(function(response){
+    console.log(response)
+    //localStorage
+  })
+}
 
 export default function Popup(props)  {
   return (

@@ -1,5 +1,5 @@
 // This is a journal session.
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -20,22 +20,46 @@ const useStyles = makeStyles({
   },
 });
 
+function create(userid, title, body) {
+  axios.post('/entry', {
+    userId: userid,
+    title: title,
+    body: body
+  })
+  .then(function(response){
+    console.log(response)
+    //localStorage
+  })
+}
+
 export default function Journal() {
   const classes = useStyles();
-  const [post] = useState([
-    {
-      id: 1,
-      author: "Xiaole",
-      createdAt: "3 min ago",
-      post: "old post",
-    },
-    {
-      id: 2,
-      author: "Xiaole",
-      createdAt: "1 hour ago",
-      post: "old old NEW post",
-    },
-  ]);
+  const [userid, setId] = useState("1");
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+
+  const [post, setPost] = useState("");
+
+  useEffect(() => {
+    async function getJournal(userid) {
+      axios.get('/entries', {
+        params: {
+          userId: userid
+        }
+      })
+      .then( (response) => {
+        console.log(response);
+        setPost(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {
+        // always executed
+      });
+    }
+    getJournal(userid)
+  }, [setPost]);
 
   return (
 
@@ -52,6 +76,8 @@ export default function Journal() {
             label="Title"
             type="journal"
             id="journal"
+            value={title}
+            onChange={ (e) => setTitle(e.target.value)}
             style = {{width: 600}}
             labelColor="primary.light"
           />
@@ -66,12 +92,12 @@ export default function Journal() {
             label="content"
             type="journal"
             id="journalContent"
+            value={body}
+            onChange={ (e) => setBody(e.target.value)}
             style = {{width: 600}}
           />
         <br />
-        <Button  color="primary" variant="contained">
-          Create
-        </Button>
+        <Button  color="primary" variant="contained" onClick={(e) => {create(userid, title, body); e.preventDefault()}} >Create</Button>
 
       </Card>
       <div className="myJournal">
@@ -79,8 +105,9 @@ export default function Journal() {
           My Journals
         </Typography>
         <div className="post-container">
-            {post && post.map(post => <JournalPost key={post.id} data={post} />)}
+            {post && post.map(post => <JournalPost key={post.id} data={post} />).reverse()}
         </div>
+
       </div>
     </ThemeProvider>
     </div>
