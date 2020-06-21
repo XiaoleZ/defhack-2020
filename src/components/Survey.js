@@ -1,6 +1,8 @@
 // This is a survey session.
 import React, { Component } from 'react';
 import surveyData from './surveyData';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
 
 class Survey extends Component {
   state = {
@@ -84,7 +86,7 @@ class Survey extends Component {
     } else {
 
       return (
-        <div className="survey">
+        <Card className="survey">
 
           <h1>{this.state.questions} </h1>
           <span>{`Questions ${currentQuestion + 1}  out of ${surveyData.questions.length } remaining `}</span>
@@ -92,32 +94,34 @@ class Survey extends Component {
           {options.map(option => (
           
           <div>
-            <button key={option.id} className={`ui floating message options ${myAnswer === option ? "selected" : null}`}
+            <Button key={option.id} className={`ui floating message options ${myAnswer === option ? "selected" : null}`}
             onClick={() => this.checkAnswer(option)}>
             {option}
-            </button>
+            </Button>
           </div>
           ))}
 
           {/* //the next button */}
           {currentQuestion < surveyData.questions.length - 1 && (
-            <button
+            <Button
+            variant="contained"
+            color="primary"
             className="ui inverted button"
             disabled={this.state.disabled}
             onClick={this.nextQuestionHandler}>
               Next
-            </button>
+            </Button>
           )}
 
           {/* //adding a finish button */}
           {currentQuestion === surveyData.questions.length - 1 && (
-            <button className="ui inverted button" onClick={this.finishHandler}>
+            <Button className="ui inverted button" onClick={this.finishHandler} color="primary" variant="contained">
               Finish
-            </button>
+            </Button>
           )}
 
             
-        </div>
+        </Card>
       );
     }
   }
