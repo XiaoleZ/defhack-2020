@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import {setUser} from "../constants";
+import {useHistory} from "react-router-dom";
 
 function Copyright() {
   return (
@@ -58,6 +59,12 @@ function submit(username, password, setErrMessage) {
     .then(function (response) {
       console.log(response);
       setUser(response.data);
+      if(response.data.has_done_survey === false){
+        useHistory().push("/survey");
+      }
+      else{
+        useHistory().push("/journal");
+      }
     })
     .catch(function (error){
       setErrMessage(error.response.data.message);
