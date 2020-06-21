@@ -27,7 +27,7 @@ export default function Journal(props) {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
-    <Grid >
+    <Grid id={props.data.id} >
       <Card className={classes.root} >
         <CardContent>
           <JournalHeader
@@ -48,6 +48,7 @@ export default function Journal(props) {
           <Popup
             show={modalShow}
             onHide={() => setModalShow(false)}
+            id={props.data.id}
           />
         </CardActions>
       </Card>
