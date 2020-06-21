@@ -53,7 +53,6 @@ class Journal extends Component {
         <TextField
             variant="outlined"
             margin="normal"
-            fullWidth
             name="title"
             label="Title"
             type="journal"
