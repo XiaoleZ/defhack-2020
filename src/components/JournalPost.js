@@ -17,7 +17,6 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: '#ecebc9',
     width: '80%',
-    backgroundColor: 'white',
     margin: '10px auto',
     textAlign: 'left',
     padding: 'auto 20px',
@@ -43,7 +42,7 @@ export default function Journal(props) {
           <p class="handwriting-font">{props.data.body}</p>
         </CardContent>
         <CardActions>
-          <Button variant="primary" size="small" onClick={() => setModalShow(true)}  variant="contained">
+          <Button size="small" onClick={() => setModalShow(true)}  variant="contained">
             Delete
           </Button>
           <Popup

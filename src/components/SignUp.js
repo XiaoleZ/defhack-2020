@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
+import Card from '@material-ui/core/Card';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
@@ -28,8 +29,10 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
+  card: {
     marginTop: theme.spacing(8),
+    padding: '20px',
+    backgroundColor: '#d8e9ec',
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -84,7 +87,7 @@ export default function SignUp() {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <Card className={classes.card}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -167,7 +170,7 @@ export default function SignUp() {
             </Grid>
           </Grid>
         </form>
-      </div>
+      </Card>
       <Box mt={5}>
         <Copyright />
       </Box>
