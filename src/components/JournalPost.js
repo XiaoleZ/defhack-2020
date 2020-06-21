@@ -32,10 +32,13 @@ export default function Journal(props) {
         <CardContent>
           <JournalHeader
             className={classes.title}
-            name={props.data.author}
-            data={props.data.createdAt}
+            name={props.data.title}
           />
-          <p>{props.data.post}</p>
+          <JournalHeader
+            className={classes.data}
+            data={props.data.create_date}
+          />
+          <p>{props.data.body}</p>
         </CardContent>
         <CardActions>
           <Button  color="primary" size="small" /*onClick={}*/ variant="contained">Edit</Button>
