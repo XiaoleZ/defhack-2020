@@ -72,6 +72,7 @@ class Journal extends Component {
             id="journalContent"
             style = {{width: 600}}
           />
+
         <br />
         <Button type="button" color="primary" variant="contained">Create</Button>
 
