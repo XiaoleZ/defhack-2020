@@ -70,7 +70,6 @@ function submit(username, password, setErrMessage) {
       }
     })
     .catch(function (error){
-      setErrMessage(error.response.data.message);
     });
 }
 

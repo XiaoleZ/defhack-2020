@@ -60,7 +60,6 @@ function submit(username, email, password, confirmedPassword, setErrMessage) {
     })
     .then(function (response) {
       setUser(response.data);
-      setErrMessage("");
       if(response.data.has_done_survey === false){
         useHistory().push("/survey");
       }
@@ -69,7 +68,6 @@ function submit(username, email, password, confirmedPassword, setErrMessage) {
       }
     })
     .catch(function (error){
-      setErrMessage(error.response.data.message);
     });
 }
 
