@@ -1,7 +1,7 @@
 .entryTime {
-  text-align: right;
+  color: gray;
 }
 
-.entryName {
+.data-container {
   text-align: left;
 }
