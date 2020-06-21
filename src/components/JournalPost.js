@@ -40,7 +40,7 @@ export default function Journal(props) {
             className={classes.data}
             data={props.data.create_date}
           />
-          <p>{props.data.body}</p>
+          <p class="handwriting-font">{props.data.body}</p>
         </CardContent>
         <CardActions>
           <Button variant="primary" size="small" onClick={() => setModalShow(true)}  variant="contained">

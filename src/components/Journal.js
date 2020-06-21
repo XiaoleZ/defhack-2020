@@ -75,7 +75,7 @@ export default function Journal() {
     <div className="Journal">
     <ThemeProvider theme={theme}>
       <Card className={classes.root}>
-        <Typography class="journal-prompt" component="h1" variant="h5" color="primary.dark">
+        <Typography class="handwriting-font" component="h1" variant="h5" color="primary.dark">
             <strong>Journal</strong> Your Inner Journey Here
         </Typography>
         <TextField
