@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function submit(username, password) {
+function submit(username, password, setErrMessage) {
   axios
     .post("/login", {
       username: username,
@@ -57,7 +57,10 @@ function submit(username, password) {
     })
     .then(function (response) {
       console.log(response);
-      setUser(response.data)
+      setUser(response.data);
+    })
+    .catch(function (error){
+      setErrMessage(error.response.data.message);
     });
 }
 
@@ -66,7 +69,11 @@ export default function SignIn() {
 
   const [password, setPassword] = useState("");
 
+  const [errMessage, setErrMessage] = useState("");
+
   const classes = useStyles();
+
+  const errComponent = errMessage? <Typography component="h2" variant="h5">{errMessage}</Typography>: null;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -78,6 +85,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        {errComponent}
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
@@ -114,7 +122,7 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
             onClick={(e) => {
-              submit(username, password);
+              submit(username, password, setErrMessage);
               e.preventDefault();
             }
             }
