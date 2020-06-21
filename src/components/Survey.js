@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import surveyData from './surveyData';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
+import { NavLink } from "react-router-dom";
 
 class Survey extends Component {
   state = {
@@ -81,6 +82,11 @@ class Survey extends Component {
       return (
         <div className="result">
           <h3>Thank you for taking the survey!</h3>
+          <Button>
+            <NavLink to="/journal" exact>
+              Let's write the first journal
+            </NavLink>
+          </Button>
         </div>
       );
     } else {
