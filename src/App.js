@@ -4,9 +4,6 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Survey from "./components/Survey";
 import Journal from "./components/Journal";
-
-// import logo from './logo.svg';
-
 import { BrowserRouter as Router , Route} from "react-router-dom";
 import axios from "axios";
 import './App.css';
@@ -37,7 +34,7 @@ class App extends Component {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/survey" component={Survey} />
-          <Route exact path="/journal" component={Journal} />         
+          <Route exact path="/journal" component={Journal} />
         </div>
         </div>
 

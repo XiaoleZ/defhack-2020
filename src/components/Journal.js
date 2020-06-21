@@ -14,10 +14,14 @@ import axios from "axios";
 const useStyles = makeStyles({
   root: {
     width: '80%',
-    backgroundColor: '#ebfafc',
+    backgroundColor: '#ecebc9',
     color: '#00494A',
     margin: '10px auto',
     textAlign: 'center',
+    padding: '20px',
+  },
+  button: {
+    marginTop: '20px',
   },
 });
 
@@ -70,15 +74,15 @@ export default function Journal() {
 
     <div className="Journal">
     <ThemeProvider theme={theme}>
-      <Typography component="h1" variant="h5" color="primary.dark">
-            Let's write a journal!
-      </Typography>
       <Card className={classes.root}>
+        <Typography class="handwriting-font" component="h1" variant="h5" color="primary.dark">
+            <strong>Journal</strong> Your Inner Journey Here
+        </Typography>
         <TextField
             variant="outlined"
             margin="normal"
             name="title"
-            label="Title"
+            label="Rant Title"
             type="journal"
             id="journal"
             value={title}
@@ -94,7 +98,7 @@ export default function Journal() {
             rows={8}
             rowsMax={8}
             name="content"
-            label="content"
+            label="Spill your thoughts"
             type="journal"
             id="journalContent"
             value={body}
@@ -102,13 +106,15 @@ export default function Journal() {
             style = {{width: 600}}
           />
         <br />
-        <Button  color="primary" variant="contained" onClick={(e) => {create(userid, title, body); e.preventDefault(); refreshPage()}} >Create</Button>
+        <Button className={classes.button} color="primary" variant="contained" onClick={(e) => {create(userid, title, body); e.preventDefault(); refreshPage()}} >Create</Button>
 
       </Card>
       <div className="myJournal">
+      <Card className={classes.root}>
         <Typography component="h1" variant="h5" m={20}>
           My Journals
         </Typography>
+      </Card>
         <div className="post-container">
             {post && post.map(post => <JournalPost key={post.id} data={post} />).reverse()}
         </div>
