@@ -1,4 +1,5 @@
 
+// import React from "react";
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -6,6 +7,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Popup from './JournalDeletePopup';
+// import Modal from 'react-bootstrap/Modal'
 import './Journal.css';
 
 import JournalHeader from "./JournalHeader";
@@ -21,6 +24,7 @@ const useStyles = makeStyles({
 
 function JournalPost(props) {
   const classes = useStyles();
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <Grid >
@@ -35,7 +39,15 @@ function JournalPost(props) {
         </CardContent>
         <CardActions>
           <Button  color="primary" size="small" /*onClick={}*/ variant="contained">Edit</Button>
-          <Button color="primary" /*onClick={}*/ size="small">Delete</Button>
+          <Button variant="primary" size="small" onClick={() => setModalShow(true)}>
+            Delete
+          </Button>
+
+          <Popup
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+          />
+          {/*<Button color="primary" onClick=<Popup /> size="small">Delete</Button>*/}
         </CardActions>
       </Card>
     </Grid>
