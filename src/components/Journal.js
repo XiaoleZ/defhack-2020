@@ -9,6 +9,7 @@ import theme from './Theme';
 import Card from '@material-ui/core/Card';
 import "./custom.css";
 import JournalPost from "./JournalPost";
+import axios from "axios"
 
 const useStyles = makeStyles({
   root: {
