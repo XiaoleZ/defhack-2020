@@ -16,7 +16,7 @@ import JournalHeader from "./JournalHeader";
 const useStyles = makeStyles({
   root: {
     width: '80%',
-    backgroundColor: 'beige',
+    backgroundColor: 'white',
     margin: '10px auto',
     textAlign: 'left',
   },
