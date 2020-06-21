@@ -42,9 +42,14 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+font-family: 'Indie Flower', cursive;
 }
 
 .container {
   margin-left: auto;
   margin-right: auto;
+}
+
+.journal-prompt {
+  font-family: 'Indie Flower', cursive;
 }

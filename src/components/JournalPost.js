@@ -15,10 +15,11 @@ import JournalHeader from "./JournalHeader";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#ebfafc',
+    backgroundColor: '#ecebc9',
     width: '80%',
     margin: '10px auto',
     textAlign: 'left',
+    padding: 'auto 20px',
   },
 });
 
