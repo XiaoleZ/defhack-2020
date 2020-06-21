@@ -37,12 +37,12 @@ export default function Journal() {
   ]);
 
   return (
-    
+
     <div className="Journal">
       <Typography component="h1" variant="h5">
             Let's write a journal!
       </Typography>
-      <Card className={classes.root}> 
+      <Card className={classes.root}>
         <TextField
             variant="outlined"
             margin="normal"
@@ -66,17 +66,18 @@ export default function Journal() {
             style = {{width: 600}}
           />
         <br />
-        <Button  color="primary" variant="contained"
-        >Create</Button>
+        <Button  color="primary" variant="contained">
+          Create
+        </Button>
 
       </Card>
       <div className="myJournal">
         <Typography component="h1" variant="h5" m={20}>
-            My Journals
+          My Journals
         </Typography>
         <div className="post-container">
             {post && post.map(post => <JournalPost key={post.id} data={post} />)}
-        </div> 
+        </div>
 
       </div>
     </div>
