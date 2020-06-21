@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import "./custom.css";
 
 
-const NavBar = () => {
+export default function NavBar() {
   return (
     <div>
       <AppBar className="nav" style={{ background: '#2E3B55' }}>
@@ -30,5 +30,4 @@ const NavBar = () => {
       </AppBar>
     </div>
   )
-}
-export default NavBar;
+};
