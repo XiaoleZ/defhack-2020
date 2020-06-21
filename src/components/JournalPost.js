@@ -42,12 +42,10 @@ export default function Journal(props) {
           <Button variant="primary" size="small" onClick={() => setModalShow(true)}>
             Delete
           </Button>
-
           <Popup
             show={modalShow}
             onHide={() => setModalShow(false)}
           />
-          {/*<Button color="primary" onClick=<Popup /> size="small">Delete</Button>*/}
         </CardActions>
       </Card>
     </Grid>
