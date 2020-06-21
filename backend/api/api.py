@@ -13,6 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True, nullable=False)
@@ -54,7 +55,7 @@ def hello_world():
 def sign_up():
     expected_fields = ['email', 'username', 'password', 'passwordConf']
     req_dict = request.get_json()
-    validate_required_fields(req_dict,expected_fields)
+    validate_required_fields(req_dict, expected_fields)
     if User.query.filter_by(username=req_dict['username']).first():
         throw_error('Username already exists')
     if req_dict['password'] != req_dict['passwordConf']:
@@ -67,9 +68,9 @@ def sign_up():
 
 @app.route('/login', methods=['POST'])
 def log_in():
-    expected_fields = ['username','password']
+    expected_fields = ['username', 'password']
     req_dict = request.get_json()
-    validate_required_fields(req_dict,expected_fields)
+    validate_required_fields(req_dict, expected_fields)
     found_user = User.query.filter_by(username=req_dict['username'], password=req_dict['password']).first()
     if not found_user:
         throw_error('Invalid username and/or password')
@@ -100,3 +101,28 @@ def set_entry():
     entry_dict = entry.as_dict()
     entry_dict['needsAttention'] = False
     return jsonify(entry_dict)
+
+
+@app.route('/survey', methods=['POST'])
+def submit_survey():
+    exepected_fields = ['userId', 'surveyScore']
+    req_dict = request.get_json()
+    validate_required_fields(req_dict, exepected_fields)
+    survey_score = req_dict['surveyScore']
+    if type(survey_score) is str:
+        throw_error('Score should not be a string')
+    if not 0 <= survey_score <= 20:
+        throw_error('Score is out of range')
+
+    if survey_score <= 5:
+        sev = 'LOW'
+    elif survey_score <= 8:
+        sev = 'MEDIUM'
+    else:
+        sev = 'HIGH'
+
+    user = User.query.filter_by(id=req_dict['userId']).first()
+    user.risk_group = sev
+    db.session.commit()
+
+    return jsonify(user.as_dict())
