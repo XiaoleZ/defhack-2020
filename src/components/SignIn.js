@@ -14,11 +14,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import {LOCAL_STORAGE_USER} from "../constants";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {"Copyright © "}demo
       <Link color="inherit" href="https://github.com/XiaoleZ/defhack-2020">
         defhack-2020 mentalhealth project
       </Link>{" "}
@@ -48,20 +49,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function submit(email, password) {
+function submit(username, password) {
   axios
     .post("/login", {
-      email: email,
+      username: username,
       password: password,
     })
     .then(function (response) {
       console.log(response);
-      //localStorage
+      localStorage.setItem(LOCAL_STORAGE_USER, JSON.stringify(response.data));
     });
 }
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
 
   const [password, setPassword] = useState("");
 
@@ -75,8 +76,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Don't forget to remove this username and password demo! Sign in{" "}
-          {email} and password {password}
+          Sign in
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -84,12 +84,12 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -114,10 +114,9 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
             onClick={(e) => {
-              submit(email, password);
-              e.preventDefault();
-              console.log(email, password);
-            }}
+              submit(username, password);
+              e.preventDefault();}
+            }
           >
             Sign In
           </Button>
