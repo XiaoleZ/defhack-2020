@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-function JournalPost(props) {
+export default function Journal(props) {
   const classes = useStyles();
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -53,5 +53,3 @@ function JournalPost(props) {
     </Grid>
   );
 }
-
-export default JournalPost;

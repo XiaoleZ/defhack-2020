@@ -2,7 +2,7 @@ import React from "react";
 import Button from '@material-ui/core/Button';
 import Modal from 'react-bootstrap/Modal'
 
-function Popup(props) {
+export default function Popup(props)  {
   return (
     <Modal
       {...props}
@@ -27,5 +27,3 @@ function Popup(props) {
     </Modal>
   );
 }
-
-export default Popup;
