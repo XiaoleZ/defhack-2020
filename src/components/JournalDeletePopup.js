@@ -21,7 +21,7 @@ function Popup(props) {
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button color="primary" variantonClick={props.onHide}>Cancel</Button>
+        <Button color="primary" variant onClick={props.onHide}>Cancel</Button>
         <Button variant="secondary" onClick={props.onHide}>Delete</Button>
       </Modal.Footer>
     </Modal>
