@@ -10,7 +10,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { NavLink } from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import axios from "axios";
 import {setUser} from "../constants";
 
@@ -58,6 +58,12 @@ function submit(username, email, password, confirmedPassword, setErrMessage) {
     .then(function (response) {
       setUser(response.data);
       setErrMessage("");
+      if(response.data.has_done_survey === false){
+        useHistory().push("/survey");
+      }
+      else{
+        useHistory().push("/journal");
+      }
     })
     .catch(function (error){
       setErrMessage(error.response.data.message);
