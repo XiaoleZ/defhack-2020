@@ -16,7 +16,7 @@ class Journal extends Component {
           name="journalContent"
           rows="5"
           cols="100"
-          placeholder="What're your thoughts? Just write it donw here!"
+          placeholder="What are your thoughts? Write them down! :)"
         />
         <br />
         <button type="button">Save</button>

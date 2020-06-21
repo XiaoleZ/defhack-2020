@@ -1,10 +1,11 @@
 import React from "react";
+import './Journal.css'
 
 const PostHeader = props => (
   <div className="post-header-container">
     <div className="data-container">
-      <strong>{props.name}</strong>
-      <span>{props.data}</span>
+      <p class="entryTime"> {props.data}</p>
+      <p class="entryName"><strong>{props.name}</strong></p>
     </div>
   </div>
 );
