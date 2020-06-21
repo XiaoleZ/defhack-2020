@@ -11,13 +11,15 @@ Installation reference for Mac at [here](https://medium.com/@itsromiljain/the-be
 2. cd api directory 
 3. setup pipenv (requires pipenv to be installed)
 4. activate the pipenv
-5. pipenv install the requirements
+5. create the database
+6. pipenv install the requirements
 
 ```
 git clone https://github.com/XiaoleZ/defhack-2020.git
-cd defhack-2020/api
+cd defhack-2020/backend
 pipenv shell
 pipenv install
+python3 create_tables.py
 export FLASK_APP=api.py (different for windows)
 ```
 
