@@ -46,4 +46,15 @@ http://localhost:5000  *Backend: Flask
 * If you have `/bin/sh: react-scripts: command not found` try run `npm install`
 
 ## Team
+
+### Memeber
 [Xiaole Zeng](https://github.com/XiaoleZ),  [Christian Lo](https://github.com/ChrisChrisLoLo), [Myat Thu Ko](https://github.com/MyatThuKo), [Mella Liang](https://github.com/myliang47), [Serena](https://github.com/Safox1)
+
+### Team Time Zones 
+HST, PST, MT, CST,  EST
+
+### Team Build
+* Slack
+* Discord
+* Google Drive
+* Google Hangouts
