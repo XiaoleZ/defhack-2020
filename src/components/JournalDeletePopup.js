@@ -33,7 +33,7 @@ export default function Popup(props)  {
       </Modal.Body>
       <Modal.Footer>
         <Button color="primary" variant onClick={props.onHide}>Cancel</Button>
-        <Button variant="secondary" onClick={(e) => {deleteJournal(props.id); e.preventDefault()}}>Delete</Button>
+        <Button variant="secondary" onClick={(e) => {deleteJournal(props.id); e.preventDefault()}, props.onHide}>Delete</Button>
       </Modal.Footer>
     </Modal>
   );
