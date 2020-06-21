@@ -136,6 +136,7 @@ def submit_survey():
 
     user = User.query.filter_by(id=req_dict['userId']).first()
     user.risk_group = sev
+    user.has_done_survey = True
     db.session.commit()
 
     return jsonify(user.as_dict())
