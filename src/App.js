@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './components/NarBar';
 import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import Progress from './components/Progress';
 import Survey from './components/Survey';
 // import logo from './logo.svg';
@@ -12,8 +13,8 @@ class App extends Component {
       <div className="App">
         <NavBar />
         {/* <SignIn /> */}
-        <Progress total="20" current="1"/>
-        <Survey question="Are you habituated to drugs and alcohol?"/>
+        {/* <SignUp /> */}
+        <Survey/>
       </div>
     );
   }
