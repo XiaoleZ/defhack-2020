@@ -20,6 +20,7 @@ class User(db.Model):
     # NEVER DO THIS OUTSIDE OF A HACKATHON, VERY INSECURE
     password = db.Column(db.String(32), unique=False, nullable=False)
     has_done_survey = db.Column(db.Boolean, default=False)
+    risk_group = db.Column(db.String(8), default='HIGH')
     journalEntries = db.relationship('JournalEntry', backref='user', lazy=True)
 
     def __repr__(self):
@@ -75,6 +76,7 @@ def log_in():
     else:
         return jsonify(found_user.as_dict())
 
+
 @app.route('/entries', methods=['GET'])
 def get_entries():
     user_id = request.args.get('userId')
@@ -86,6 +88,7 @@ def get_entries():
     else:
         return jsonify([entry.as_dict() for entry in entries])
 
+
 @app.route('/entry', methods=['POST'])
 def set_entry():
     expected_fields = ['userId', 'title', 'body']
@@ -94,4 +97,6 @@ def set_entry():
     entry = JournalEntry(user_id=req_dict['userId'], title=req_dict['title'], body=req_dict['body'])
     db.session.add(entry)
     db.session.commit()
-    return jsonify(entry.as_dict())
+    entry_dict = entry.as_dict()
+    entry_dict['needsAttention'] = False
+    return jsonify(entry_dict)

@@ -132,7 +132,7 @@ let surveyData = {
     {
       id: "20",
       question:
-        "Do you usually act first and then think, in the last six months?",
+        "Have you experienced any of these feelings: Hopelessness, Helplessness, Depression?",
       options: [`Yes`, `No`, `N/A`],
       answer: `Yes`,
     },
