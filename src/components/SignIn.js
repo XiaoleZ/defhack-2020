@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 function Copyright() {
   return (
@@ -47,7 +48,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function submit(username, password) {
+  axios.post('/login', {
+    username: username,
+    password: password
+  })
+  .then(function(response){
+    console.log(response)
+    //localStorage
+  })
+}
+
 export default function SignIn() {
+
+  const [login, setLogin] = useState('');
+
   const classes = useStyles();
 
   return (
@@ -58,7 +73,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign in {login}
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -71,6 +86,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={e => setLogin(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -93,6 +109,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={(e) => {submit(login,null); e.preventDefault()}}
           >
             Sign In
           </Button>
