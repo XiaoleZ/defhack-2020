@@ -41,8 +41,7 @@ export default function Journal(props) {
           <p>{props.data.body}</p>
         </CardContent>
         <CardActions>
-          <Button  color="primary" size="small" /*onClick={}*/ variant="contained">Edit</Button>
-          <Button variant="primary" size="small" onClick={() => setModalShow(true)}>
+          <Button variant="primary" size="small" onClick={() => setModalShow(true)}  variant="contained">
             Delete
           </Button>
           <Popup
