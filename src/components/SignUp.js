@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import {setUser} from "../constants";
 
 function Copyright() {
   return (
@@ -46,28 +47,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function submit(firstName, lastName, email, password, confirmedPassword) {
+function submit(username, email, password, confirmedPassword, setErrMessage) {
   axios
     .post("/signup", {
-      firstName: firstName,
-      lastName: lastName,
+      username: username,
       email: email,
       password: password,
-      confirmedPassword: confirmedPassword,
+      passwordConf: confirmedPassword,
     })
     .then(function (response) {
-      console.log(response);
+      setUser(response.data);
+      setErrMessage("");
+    })
+    .catch(function (error){
+      setErrMessage(error.response.data.message);
     });
 }
 
 export default function SignUp() {
-  const [firstName, setFN] = useState("");
-  const [lastName, setLN] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPW, setConfirmedPW] = useState("");
+  const [errMessage, setErrMessage] = useState("");
 
   const classes = useStyles();
+
+  const errComponent = errMessage? <Typography component="h2" variant="h5">{errMessage}</Typography>: null;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -77,33 +83,22 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up {firstName} {lastName} {email} {password} {confirmedPW}
+          Sign up
         </Typography>
+        {errComponent}
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                autoComplete="username"
+                name="username"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
-                onChange={(e) => setFN(e.target.value)}
+                id="username"
+                label="Username"
+                onChange={(e) => setUsername(e.target.value)}
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                onChange={(e) => setLN(e.target.value)}
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
@@ -152,9 +147,8 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
             onClick={(e) => {
-              submit(firstName, lastName, email, password, confirmedPW);
               e.preventDefault();
-              console.log(firstName, lastName, email, password, confirmedPW);
+              submit(username, email, password, confirmedPW, setErrMessage);
             }}
           >
             Sign Up
