@@ -1,7 +1,6 @@
 import React from "react";
 import Button from '@material-ui/core/Button';
 import Modal from 'react-bootstrap/Modal'
-import Modal from 'react-bootstrap/Modal';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './Theme';
 import axios from "axios"
