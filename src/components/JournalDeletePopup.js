@@ -2,7 +2,7 @@ import React from "react";
 import Button from '@material-ui/core/Button';
 import Modal from 'react-bootstrap/Modal'
 
-function Popup(props) {
+export default function Popup(props)  {
   return (
     <Modal
       {...props}
@@ -21,11 +21,9 @@ function Popup(props) {
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button color="primary" variantonClick={props.onHide}>Cancel</Button>
+        <Button color="primary" variant onClick={props.onHide}>Cancel</Button>
         <Button variant="secondary" onClick={props.onHide}>Delete</Button>
       </Modal.Footer>
     </Modal>
   );
 }
-
-export default Popup;

@@ -16,13 +16,13 @@ import JournalHeader from "./JournalHeader";
 const useStyles = makeStyles({
   root: {
     width: '80%',
-    backgroundColor: 'beige',
+    backgroundColor: 'white',
     margin: '10px auto',
     textAlign: 'left',
   },
 });
 
-function JournalPost(props) {
+export default function Journal(props) {
   const classes = useStyles();
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -53,5 +53,3 @@ function JournalPost(props) {
     </Grid>
   );
 }
-
-export default JournalPost;
