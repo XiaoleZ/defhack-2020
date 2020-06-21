@@ -1,22 +1,31 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
+import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 // import Button from '@material-ui/core/Button';
 import { NavLink } from "react-router-dom";
+import "./custom.css";
+
 
 const NavBar = () => {
   return (
     <div>
-      <AppBar position="static">
+      <AppBar className="nav" style={{ background: '#2E3B55' }}>
         <Toolbar>
-          <Typography  color="inherit">
-            Mental Health Project
-          </Typography>
-          <NavLink to="/signin" exact color="inherit">Login</NavLink>
-          <NavLink to="/signup" exact color="inherit">SignUp</NavLink>
-          <NavLink to="/survey" exact color="inherit">Survey</NavLink>
-          <NavLink to="/journal" exact color="inherit">Journal</NavLink>
+          <Grid justify="space-between" container spacing={24}>
+            <Grid >
+              <Typography  color="inherit">
+              Mental Health Project
+              </Typography>
+            </Grid>
+            <Grid >
+              <NavLink to="/signin" exact className="nav-item">Login</NavLink>
+              <NavLink to="/signup" exact className="nav-item">SignUp</NavLink>
+              <NavLink to="/survey" exact className="nav-item">Survey</NavLink>
+              <NavLink to="/journal" exact className="nav-item">Journal</NavLink>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
     </div>

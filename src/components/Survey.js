@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import surveyData from './surveyData';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 import { NavLink } from "react-router-dom";
+import "./custom.css";
 
 class Survey extends Component {
   state = {
@@ -92,8 +95,10 @@ class Survey extends Component {
     } else {
 
       return (
-        <Card className="survey">
 
+        <Container>
+        <Typography component="h1" variant="h5">Let's do a quick survey!</Typography>
+        <Card className="survey">
           <h1>{this.state.questions} </h1>
           <span>{`Questions ${currentQuestion + 1}  out of ${surveyData.questions.length } remaining `}</span>
           
@@ -124,10 +129,9 @@ class Survey extends Component {
             <Button className="ui inverted button" onClick={this.finishHandler} color="primary" variant="contained">
               Finish
             </Button>
-          )}
-
-            
+          )}        
         </Card>
+        </Container>
       );
     }
   }

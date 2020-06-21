@@ -1,0 +1,17 @@
+div {
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+}
+
+.container {
+    margin: 30pt;
+    margin-top: 70pt;
+    margin-left: 70pt;
+    margin-right: 70pt;
+}
+
+.nav-item {
+    color: white;
+    margin: 2pt;
+    text-decoration: none;
+}
