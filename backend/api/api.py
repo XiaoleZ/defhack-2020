@@ -4,7 +4,7 @@ import json
 from flask import Flask, request, abort, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 
-from .server_utils import throw_error
+from .server_utils import throw_error, validate_required_fields
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -49,13 +49,9 @@ def hello_world():
 def sign_up():
     expected_fields = ['email', 'username', 'password', 'passwordConf']
     req_dict = request.get_json()
-    if not req_dict:
-        throw_error('No JSON')
-    for field in expected_fields:
-        if field not in req_dict:
-            throw_error(f'{field} was expected but not received')
+    validate_required_fields(req_dict,expected_fields)
     if req_dict['password'] != req_dict['passwordConf']:
-        throw_error(f'Passwords do not match')
+        throw_error('Passwords do not match')
     user = User(username=req_dict['username'], email=req_dict['email'], password=req_dict['password'])
     db.session.add(user)
     db.session.commit()
@@ -64,4 +60,11 @@ def sign_up():
 
 @app.route('/login', methods=['POST'])
 def log_in():
-    req_dict = json.load(request.get_json())
+    expected_fields = ['username','password']
+    req_dict = request.get_json()
+    validate_required_fields(req_dict,expected_fields)
+    found_user = User.query.filter_by(username=req_dict['username'], password=req_dict['password']).first()
+    if not found_user:
+        throw_error('Invalid username and/or password')
+    else:
+        return jsonify(found_user.as_dict())
