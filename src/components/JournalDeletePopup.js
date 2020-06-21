@@ -5,13 +5,17 @@ import axios from "axios"
 
 function deleteJournal(id) {
   axios.delete('/entry', {
-    data: {entryId: id,}
+    data: {entryId: id}
   })
   .then(function(response){
     console.log(response)
     //localStorage
   })
 }
+
+function refreshPage() {
+  window.location.reload(false);
+};
 
 export default function Popup(props)  {
   return (
@@ -33,7 +37,7 @@ export default function Popup(props)  {
       </Modal.Body>
       <Modal.Footer>
         <Button color="primary" variant onClick={props.onHide}>Cancel</Button>
-        <Button variant="secondary" onClick={(e) => {deleteJournal(props.id); e.preventDefault()}, props.onHide}>Delete</Button>
+        <Button variant="secondary" onClick={(e) => { deleteJournal(props.id); e.preventDefault(); props.onHide(); refreshPage()}}>Delete</Button>
       </Modal.Footer>
     </Modal>
   );

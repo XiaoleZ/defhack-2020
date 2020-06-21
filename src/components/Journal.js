@@ -29,7 +29,11 @@ function create(userid, title, body) {
     console.log(response)
     //localStorage
   })
-}
+};
+
+function refreshPage() {
+  window.location.reload(false);
+};
 
 export default function Journal() {
   const classes = useStyles();
@@ -94,7 +98,7 @@ export default function Journal() {
             style = {{width: 600}}
           />
         <br />
-        <Button  color="primary" variant="contained" onClick={(e) => {create(userid, title, body); e.preventDefault()}} >Create</Button>
+        <Button  color="primary" variant="contained" onClick={(e) => {create(userid, title, body); e.preventDefault(); refreshPage()}} >Create</Button>
 
       </Card>
       <div className="myJournal">
