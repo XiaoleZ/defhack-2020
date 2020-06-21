@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Tech Stack
-* [React](https://reactjs.org/) - [React reference.](https://github.com/XiaoleZ/defhack-2020/wiki/React-reference)
+* [React](https://reactjs.org/) - [React Available Scripts](https://github.com/XiaoleZ/defhack-2020/wiki/React-reference)
 * [Material-UI.](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 * [Sqlite](https://www.sqlite.org/index.html)
