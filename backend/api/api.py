@@ -102,6 +102,7 @@ def set_entry():
     entry_dict['needsAttention'] = False
     return jsonify(entry_dict)
 
+
 @app.route('/entry', methods=['DELETE'])
 def delete_entry():
     expected_fields = ['entryId']
@@ -114,11 +115,12 @@ def delete_entry():
     db.session.commit()
     return jsonify({'message': 'delete successful'})
 
+
 @app.route('/survey', methods=['POST'])
 def submit_survey():
-    exepected_fields = ['userId', 'surveyScore']
+    expected_fields = ['userId', 'surveyScore']
     req_dict = request.get_json()
-    validate_required_fields(req_dict, exepected_fields)
+    validate_required_fields(req_dict, expected_fields)
     survey_score = req_dict['surveyScore']
     if type(survey_score) is str:
         throw_error('Score should not be a string')

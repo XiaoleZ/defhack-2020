@@ -1,0 +1,1 @@
+export let LOCAL_STORAGE_USER = 'user';
