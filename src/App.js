@@ -5,6 +5,8 @@ import SignUp from './components/SignUp';
 import Survey from './components/Survey';
 import JournalPost from './components/JournalPost';
 // import logo from './logo.svg';
+
+import { BrowserRouter as Router , Route} from "react-router-dom";
 import './App.css';
 
 class App extends Component {
@@ -27,15 +29,23 @@ class App extends Component {
     //hardcode
     const { post } = this.state;
     return (
-      <div className="App">
-        <NavBar />
-        {/* <SignIn /> */}
-        {/* <SignUp /> */}
-        <Survey/>
-        <div className="post-container">
-          {post && post.map(post => <JournalPost key={post.id} data={post} />)}
+      <Router>
+        <div className="App">
+        <NavBar/>
+        <div className="container">
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/survey" component={Survey} />
+          <Route exact path="/journel">
+            {/* <div className="post-container">
+            {post && post.map(post => <JournalPost key={post.id} data={post} />)}
+          </div> */}            
+          </Route>
+
         </div>
-      </div>
+        </div>
+
+      </Router>
     );
   }
 }
