@@ -102,6 +102,17 @@ def set_entry():
     entry_dict['needsAttention'] = False
     return jsonify(entry_dict)
 
+@app.route('/entry', methods=['DELETE'])
+def delete_entry():
+    expected_fields = ['entryId']
+    req_dict = request.get_json()
+    validate_required_fields(req_dict, expected_fields)
+    entry = JournalEntry.query.filter_by(id=req_dict['entryId']).first()
+    if entry is None:
+        throw_error('no entry to delete')
+    db.session.delete(entry)
+    db.session.commit()
+    return jsonify({'message': 'delete successful'})
 
 @app.route('/survey', methods=['POST'])
 def submit_survey():
