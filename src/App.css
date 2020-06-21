@@ -43,3 +43,8 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
