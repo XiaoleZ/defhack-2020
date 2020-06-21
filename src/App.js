@@ -4,8 +4,9 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Survey from './components/Survey';
 import JournalPost from './components/JournalPost';
+
 // import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 class App extends Component {
   //hardcode
@@ -35,7 +36,6 @@ class App extends Component {
         <div className="post-container">
           {post && post.map(post => <JournalPost key={post.id} data={post} />)}
         </div>
-      </div>
     );
   }
 }
