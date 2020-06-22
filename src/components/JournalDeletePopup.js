@@ -17,7 +17,7 @@ function deleteJournal(id) {
 
 function refreshPage() {
   window.location.reload(false);
-};
+}
 
 export default function Popup(props)  {
   return (

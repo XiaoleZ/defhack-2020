@@ -10,6 +10,9 @@ import Card from '@material-ui/core/Card';
 import "./custom.css";
 import JournalPost from "./JournalPost";
 import axios from "axios";
+import {getUser} from "../constants";
+import Popup from "./JournalDeletePopup";
+import MentalHealthPopup from "./MentalHealthPopup";
 
 const useStyles = makeStyles({
   root: {
@@ -25,21 +28,9 @@ const useStyles = makeStyles({
   },
 });
 
-function create(userid, title, body) {
-  axios.post('/entry', {
-    userId: userid,
-    title: title,
-    body: body
-  })
-  .then(function(response){
-    console.log(response)
-    //localStorage
-  })
-};
-
 function refreshPage() {
   window.location.reload(false);
-};
+}
 
 export default function Journal() {
   const classes = useStyles();
@@ -47,7 +38,27 @@ export default function Journal() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const [post, setPost] = useState("");
+  const [posts, setPosts] = useState("");
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [riskGroup, setRiskGroup] = useState("LOW");
+
+  const create = (userid, title, body) => {
+    axios.post('/entry', {
+      userId: userid,
+      title: title,
+      body: body
+    })
+    .then(function(response){
+      console.log([...posts, response.data]);
+      setPosts([...posts, response.data]);
+      //localStorage
+      if (response.data && response.data.needsAttention){
+        setRiskGroup(getUser().risk_group);
+        setShowPopup(true);
+      }
+    });
+  }
 
   useEffect(() => {
     async function getJournal(userid) {
@@ -58,7 +69,7 @@ export default function Journal() {
       })
       .then( (response) => {
         console.log(response);
-        setPost(response.data);
+        setPosts(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -68,7 +79,7 @@ export default function Journal() {
       });
     }
     getJournal(userid)
-  }, [setPost]);
+  }, [setPosts]);
 
   return (
 
@@ -106,7 +117,7 @@ export default function Journal() {
             style = {{width: 600}}
           />
         <br />
-        <Button className={classes.button} color="primary" variant="contained" onClick={(e) => {create(userid, title, body); e.preventDefault(); refreshPage()}} >Create</Button>
+        <Button className={classes.button} color="primary" variant="contained" onClick={(e) => {create(userid, title, body); e.preventDefault();}}>Create</Button>
 
       </Card>
       <div className="myJournal">
@@ -116,10 +127,15 @@ export default function Journal() {
         </Typography>
       </Card>
         <div className="post-container">
-            {post && post.map(post => <JournalPost key={post.id} data={post} />).reverse()}
+            {posts && posts.map(post => <JournalPost key={post.id} data={post} />).reverse()}
         </div>
 
       </div>
+      <MentalHealthPopup
+          show={showPopup}
+          onHide={() => setShowPopup(false)}
+          riskGroup={riskGroup}
+        />
     </ThemeProvider>
     </div>
   );

@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 from .server_utils import throw_error, validate_required_fields
+from .sensitive_words import sensitive_words
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -99,7 +100,15 @@ def set_entry():
     db.session.add(entry)
     db.session.commit()
     entry_dict = entry.as_dict()
-    entry_dict['needsAttention'] = False
+
+    needs_attention = False
+    for word in entry_dict['body'].split(' '):
+        print(word)
+        if word.lower() in sensitive_words:
+            needs_attention = True
+
+    entry_dict['needsAttention'] = needs_attention
+
     return jsonify(entry_dict)
 
 
