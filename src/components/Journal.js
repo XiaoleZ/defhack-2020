@@ -12,6 +12,7 @@ import JournalPost from "./JournalPost";
 import axios from "axios";
 import {getUser} from "../constants";
 import Popup from "./JournalDeletePopup";
+import MentalHealthPopup from "./MentalHealthPopup";
 
 const useStyles = makeStyles({
   root: {
@@ -130,7 +131,7 @@ export default function Journal() {
         </div>
 
       </div>
-      <Popup
+      <MentalHealthPopup
           show={showPopup}
           onHide={() => setShowPopup(false)}
           riskGroup={riskGroup}
