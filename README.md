@@ -52,7 +52,7 @@ http://localhost:5000  *Backend: Flask
 ## Team
 
 ### Memeber
-[Xiaole Zeng](https://github.com/XiaoleZ),  [Christian Lo](https://github.com/ChrisChrisLoLo), [Myat Thu Ko](https://github.com/MyatThuKo), [Mella Liang](https://github.com/myliang47), [Serena](https://github.com/Safox1)
+[Xiaole Zeng](https://github.com/XiaoleZ),  [Christian Lo](https://github.com/ChrisChrisLoLo), [Myat Thu Ko](https://github.com/MyatThuKo), [Mella Liang](https://github.com/myliang47), [Serenity](https://github.com/Safox1)
 
 ### Team Time Zones 
 HST, PST, MT, CST,  EST
