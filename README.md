@@ -45,6 +45,10 @@ http://localhost:5000  *Backend: Flask
 
 * If you have `/bin/sh: react-scripts: command not found` try run `npm install`
 
+### Diagram
+![pic](https://github.com/XiaoleZ/defhack-2020/blob/master/%3DDiagram.png)
+
+
 ## Team
 
 ### Memeber
