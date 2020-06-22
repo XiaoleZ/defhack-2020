@@ -3,23 +3,8 @@ import Button from '@material-ui/core/Button';
 import Modal from 'react-bootstrap/Modal'
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './Theme';
-import axios from "axios"
 
-function deleteJournal(id) {
-  axios.delete('/entry', {
-    data: {entryId: id}
-  })
-  .then(function(response){
-    console.log(response)
-    //localStorage
-  })
-}
-
-function refreshPage() {
-  window.location.reload(false);
-}
-
-export default function Popup(props)  {
+export default function MentalHealthPopup(props)  {
   return (
     <div>
     <Modal
@@ -40,8 +25,7 @@ export default function Popup(props)  {
       </Modal.Body>
       <Modal.Footer>
       <ThemeProvider theme={theme}>
-        <Button color="secondary" size="small" onClick={(e) => { deleteJournal(props.id); e.preventDefault(); props.onHide(); refreshPage()}}>Delete</Button>
-        <Button color="primary" variant="contained" size="small" onClick={props.onHide}>Cancel</Button>
+        <Button color="primary" variant="contained" size="small" onClick={props.onHide}>Okay</Button>
       </ThemeProvider>
       </Modal.Footer>
     </Modal>
