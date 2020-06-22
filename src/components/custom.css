@@ -1,14 +1,11 @@
 div {
     padding-top: 2pt;
     padding-bottom: 2pt;
-    
+
 }
 
 .container {
-    margin: 30pt;
     margin-top: 70pt;
-    margin-left: 70pt;
-    margin-right: 70pt;
 }
 
 .nav-item {
@@ -17,3 +14,24 @@ div {
     text-decoration: none;
 }
 
+.survey-title {
+  margin: 0 auto 3rem;
+}
+
+.questions-remaining {
+  text-align: right;
+  padding: 2rem;
+}
+
+.survey-question {
+  margin: 3rem;
+}
+
+.answer-button {
+  margin: 1.5rem 2rem;
+}
+
+.next-button {
+  margin: 2rem 1rem 2rem auto !important;
+  float: right;
+}

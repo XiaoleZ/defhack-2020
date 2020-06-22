@@ -6,6 +6,8 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { NavLink } from "react-router-dom";
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './Theme';
 import "./custom.css";
 
 class Survey extends Component {
@@ -83,11 +85,11 @@ class Survey extends Component {
 
     if (isEnd) {
       return (
-        <div className="result">
+        <div className="result" color="#00494A">
           <h3>Thank you for taking the survey!</h3>
           <Button>
             <NavLink to="/journal" exact>
-              Let's write the first journal
+              Let's go write your first journal~
             </NavLink>
           </Button>
         </div>
@@ -97,27 +99,29 @@ class Survey extends Component {
       return (
 
         <Container>
-        <Typography component="h1" variant="h5">Let's do a quick survey!</Typography>
-        <Card className="survey">
-          <h1>{this.state.questions} </h1>
-          <span>{`Questions ${currentQuestion + 1}  out of ${surveyData.questions.length } remaining `}</span>
-          
-          {options.map(option => (
-          
+        <Card>
+        <ThemeProvider theme={theme}>
+          <div classname="survey" color="#00494A">
+            <p className="questions-remaining">{`Question ${currentQuestion + 1}  out of ${surveyData.questions.length }`}</p>
+            <h4 className="survey-title">Mental Health Survey</h4>
+            <light><h5 className="survey-question">{this.state.questions} </h5></light>
+
           <div>
-            <Button key={option.id} className={`ui floating message options ${myAnswer === option ? "selected" : null}`}
+          {options.map(option => (
+          <span display="inline" style={{margin: '1.5rem 2rem'}}>
+            <Button variant="contained" color="secondary" key={option.id} className={`answer-button ${myAnswer === option ? "selected" : null}`}
             onClick={() => this.checkAnswer(option)}>
             {option}
             </Button>
-          </div>
+          </span>
           ))}
+          </div>
 
           {/* //the next button */}
           {currentQuestion < surveyData.questions.length - 1 && (
             <Button
             variant="contained"
-            color="primary"
-            className="ui inverted button"
+            className="next-button"
             disabled={this.state.disabled}
             onClick={this.nextQuestionHandler}>
               Next
@@ -129,7 +133,9 @@ class Survey extends Component {
             <Button className="ui inverted button" onClick={this.finishHandler} color="primary" variant="contained">
               Finish
             </Button>
-          )}        
+          )}
+        </div>
+        </ThemeProvider>
         </Card>
         </Container>
       );
@@ -138,4 +144,3 @@ class Survey extends Component {
 }
 
 export default Survey;
-
